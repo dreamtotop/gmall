@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.top.gmall.gmalluser.mapper.UmsMemberMapper">
+
+    <resultMap id="baseMap" type="org.top.gmall.gmalluser.model.UmsMember">
+        <id property="id" column="id"/>
+        <result property="memberLevelId" column="member_level_id"/>
+        <result property="username" column="username"/>
+        <result property="password" column="password"/>
+        <result property="nickname" column="nickname"/>
+        <result property="phone" column="phone"/>
+        <result property="status" column="status"/>
+        <result property="createTime" column="create_time"/>
+        <result property="icon" column="icon"/>
+        <result property="gender" column="gender"/>
+        <result property="birthday" column="birthday"/>
+        <result property="city" column="city"/>
+        <result property="job" column="job"/>
+        <result property="personalizedSignature" column="personalized_signature"/>
+        <result property="sourceType" column="source_type"/>
+        <result property="integration" column="integration"/>
+        <result property="growth" column="growth"/>
+        <result property="luckeyCount" column="luckey_count"/>
+        <result property="historyIntegration" column="history_integration"/>
+    </resultMap>
+
+    <sql id="baseSQL">
+        id,member_level_id,username,password,nickname,phone,status,create_time,
+        icon,gender,birthday,city,job,personalized_signature,source_type,
+        integration,growth,luckey_count,history_integration
+    </sql>
+
+    <insert id="saveUser" parameterType="org.top.gmall.gmalluser.model.UmsMember">
+        insert  into ums_member
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="user.memberLevelId!=null">
+                member_level_id,
+            </if>
+            <if test="user.username!=null and user.username!=''">
+                username,
+            </if>
+            <if test="user.password!=null and user.password!=''">
+                password,
+            </if>
+            <if test="user.nickname!=null and user.nickname!=''">
+                nickname,
+            </if>
+            <if test="user.phone!=null and user.phone!=''">
+                phone,
+            </if>
+            <if test="user.status!=null">
+                status,
+            </if>
+            <if test="user.createTime!=null">
+                create_time,
+            </if>
+            <if test="user.icon!=null and user.icon!=''">
+                icon,
+            </if>
+            <if test="user.gender!=null">
+                gender,
+            </if>
+            <if test="user.birthday!=null">
+                birthday,
+            </if>
+            <if test="user.city!=null and user.city!=''">
+                city,
+            </if>
+            <if test="user.job!=null and user.job!=''">
+                job,
+            </if>
+            <if test="user.personalizedSignature!=null and user.personalizedSignature!=''">
+                personalized_signature,
+            </if>
+            <if test="user.sourceType!=null">
+                source_type,
+            </if>
+            <if test="user.integration!=null">
+                integration,
+            </if>
+            <if test="user.growth!=null">
+                growth,
+            </if>
+            <if test="user.luckeyCount!=null">
+                luckey_count,
+            </if>
+            <if test="user.historyIntegration!=null">
+                history_integration,
+            </if>
+        </trim>
+        <trim prefix="values(" suffix=")" suffixOverrides=",">
+            <if test="user.memberLevelId!=null">
+                #{user.memberLevelId},
+            </if>
+            <if test="user.username!=null and user.username!=''">
+                #{user.username},
+            </if>
+            <if test="user.password!=null and user.password!=''">
+                #{user.password},
+            </if>
+            <if test="user.nickname!=null and user.nickname!=''">
+                #{user.nickname},
+            </if>
+            <if test="user.phone!=null and user.phone!=''">
+                #{user.phone},
+            </if>
+            <if test="user.status!=null">
+                #{user.status},
+            </if>
+            <if test="user.createTime!=null">
+                #{user.createTime},
+            </if>
+            <if test="user.icon!=null and user.icon!=''">
+                #{user.icon},
+            </if>
+            <if test="user.gender!=null">
+                #{user.gender},
+            </if>
+            <if test="user.birthday!=null">
+                #{user.birthday},
+            </if>
+            <if test="user.city!=null and user.city!=''">
+                #{user.city},
+            </if>
+            <if test="user.job!=null and user.job!=''">
+                #{user.job},
+            </if>
+            <if test="user.personalizedSignature!=null and user.personalizedSignature!=''">
+                #{user.personalizedSignature},
+            </if>
+            <if test="user.sourceType!=null">
+                #{user.sourceType},
+            </if>
+            <if test="user.integration!=null">
+                #{user.integration},
+            </if>
+            <if test="user.growth!=null">
+                #{user.growth},
+            </if>
+            <if test="user.luckeyCount!=null">
+                #{user.luckeyCount},
+            </if>
+            <if test="user.historyIntegration!=null">
+                #{user.historyIntegration},
+            </if>
+        </trim>
+    </insert>
+
+    <select id="selectUser" resultMap="baseMap">
+        select
+        <include refid="baseSQL"/>
+        from ums_member
+        where id=#{id}
+    </select>
+
+    <select id="selectAll" parameterType="org.top.gmall.gmalluser.model.UmsMember" resultMap="baseMap">
+        sselect
+        <include refid="baseSQL"/>
+        from ums_member
+    </select>
+
+    <update id="updateUser">
+        update ums_member
+        <set>
+            <if test="user.memberLevelId!=null">
+                member_level_id = #{user.memberLevelId},
+            </if>
+            <if test="user.username!=null and user.username!=''">
+                username = #{user.username},
+            </if>
+            <if test="user.password!=null and user.password!=''">
+                password = #{user.password},
+            </if>
+            <if test="user.nickname!=null and user.nickname!=''">
+                nickname = #{user.nickname},
+            </if>
+            <if test="user.phone!=null and user.phone!=''">
+                phone = #{user.phone},
+            </if>
+            <if test="user.status!=null">
+                status = #{user.status},
+            </if>
+            <if test="user.createTime!=null">
+                create_time = #{user.createTime},
+            </if>
+            <if test="user.icon!=null and user.icon!=''">
+                icon = #{user.icon},
+            </if>
+            <if test="user.gender!=null">
+                gender = #{user.gender},
+            </if>
+            <if test="user.birthday!=null">
+                birthday = #{user.birthday},
+            </if>
+            <if test="user.city!=null and user.city!=''">
+                city = #{user.city},
+            </if>
+            <if test="user.job!=null and user.job!=''">
+                job = #{user.job},
+            </if>
+            <if test="user.personalizedSignature!=null and user.personalizedSignature!=''">
+                personalized_signature = #{user.personalizedSignature},
+            </if>
+            <if test="user.sourceType!=null">
+                source_type = #{user.sourceType},
+            </if>
+            <if test="user.integration!=null">
+                integration = #{user.integration},
+            </if>
+            <if test="user.growth!=null">
+                growth = #{user.growth},
+            </if>
+            <if test="user.luckeyCount!=null">
+                luckey_count = #{user.luckeyCount},
+            </if>
+            <if test="user.historyIntegration!=null">
+                history_integration = #{user.historyIntegration},
+            </if>
+        </set>
+        where id = #{user.id}
+    </update>
+
+    <delete id="deleteUser">
+        delete from ums_member where id=#{id}
+    </delete>
+
+</mapper>
